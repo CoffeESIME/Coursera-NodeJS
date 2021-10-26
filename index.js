@@ -1,14 +1,22 @@
-var rect =require('./rectangle.js')
+var rect = require("./rectangle.js");
 
-
-function solveRect(l,b){
-    console.log(`Solving for rectangle with ${l} and b ${b}`)
-    if (l<=0||b<=0){
-        console.log(`Rectangle dimension should be greater than zero 0`)
+function solveRect(l, b) {
+  console.log(`Solving for rectangle with ${l} and b ${b}`);
+  rect(l, b, (err, rectangle) => {
+    if (err) {
+      console.log(`Error: ${err.message}`);
+    } else {
+      console.log(`The area of the rectangle with dimension l=
+            ${l} and b = ${b} is ${rectangle.area()}`);
+      console.log(`The perimeter of the rectangle with dimension l=
+            ${l} and b = ${b} is ${rectangle.perimeter()}`);
     }
-    else {
-        console.log(`The area of the rectangle is ${rect.area(l,b)}`)
-        console.log(`The perimeter of the rectangle is ${rect.perimeter(l,b)}`)
-    }
+  });
+  console.log("This statement is after the call of rectangle")
 }
-solveRect(4,5)
+solveRect(4, 5);
+
+solveRect(4, -3);
+solveRect(3, 5);
+solveRect(4, 2);
+solveRect(0, 5);

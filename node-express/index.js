@@ -6,6 +6,9 @@ const express = require('express');
 const http = require('http');
 /* */
 const morgan=require('morgan');
+
+/* we use the route that we created*/
+const dishRouter = require('./routes/dishRouter');
 /*ip address */
 const hostname = '192.168.1.71';
 /*port */
@@ -26,36 +29,8 @@ The function signature is:
 express.static(root, [options])*/
 app.use(express.static(__dirname+'/public'));
 app.use(bodyParser.json());
-/* here we are saying that for every GET, PUT, POST and DELETE request to 
-the path /dishes (the fisrt middleware to be called and then any other middleware) 
-will be send a plain text and then we use the function next that is for saying that 
-the current middleware is not the end of this request and then pass it to the next middleware
-by using the  next() function*/
-app.all('/dishes',(req,res,next)=>{
-  res.statusCode=200;
-  res.setHeader('Content-Type','txt/plain');
-  /*saying that is not the end to*/
-  next();
-});
-/*So next we will create another middleware, because the reques can be an GET, PUT, POST and DELETE
-request */
-app.get('/dishes', (req,res,next)=>{
-  res.end('Will send all the dishes to you !')
-});
-app.post('/dishes',(req,res,next)=>{
-  res.end(`will add the dish ${req.body.name} with details: ${req.body.description}`)
-});
-app.put('/dishes', (req,res,next)=>{
-  /*for the status 403 this means that is not supported or forbidden*/
-  res.statusCode=403;
-  res.end('PUT operations are not supported on dishes')
-});
-
-app.delete('/dishes', (req,res,next)=>{
-  /*for the status 403 this means that is not supported */
-    res.end('Deleting all the dishes!')
-});
-
+app.use('/dishes',dishRouter)
+/*
 app.get('/dishes/:dishesId', (req,res,next)=>{
   res.end(`We will send the details of the dish: 
   ${req.params.dishesId} to you!`)
@@ -64,16 +39,16 @@ app.post('/dishes/:dishesId',(req,res,next)=>{
   res.end(`POST operations are not supportted in dishes/ ${req.params.dishesId}`)
 });
 app.put('/dishes/:dishesId', (req,res,next)=>{
-  /*for the status 403 this means that is not supported or forbidden*/
+  /*for the status 403 this means that is not supported or forbidden
   res.write(`Updating the dish:${req.params.dishesId}\n`)
   res.end(`Will update the dish: ${req.body.name} with details ${req.body.description} `)
 });
 
 app.delete('/dishes/:dishesId', (req,res,next)=>{
-  /*for the status 403 this means that is not supported */
+  /*for the status 403 this means that is not supported 
     res.end(`Deleting dishe! ${req.params.dishesId}`)
 });
-
+*/
 
 
 app.use((req, res, next) => {

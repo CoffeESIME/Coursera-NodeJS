@@ -7,7 +7,7 @@ const http = require("http");
 const fs = require('fs');
 const path = require('path');
 
-
+/**body-parser, passport, cors, multer, nodemailer y tal vez sequelize si quieres un orm */
 const server = http.createServer((req, res) => {
   console.log('Request for ' + req.url + ' by method ' + req.method);
 

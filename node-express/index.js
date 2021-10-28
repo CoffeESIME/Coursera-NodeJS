@@ -9,6 +9,8 @@ const morgan=require('morgan');
 
 /* we use the route that we created*/
 const dishRouter = require('./routes/dishRouter');
+const leaderRouter=require('./routes/leaderRouter');
+const promoRouter=require('./routes/promoRouter')
 /*ip address */
 const hostname = '192.168.1.71';
 /*port */
@@ -30,24 +32,10 @@ express.static(root, [options])*/
 app.use(express.static(__dirname+'/public'));
 app.use(bodyParser.json());
 app.use('/dishes',dishRouter)
+app.use('/promotions',promoRouter)
+app.use('/leaders',leaderRouter)
 /*
-app.get('/dishes/:dishesId', (req,res,next)=>{
-  res.end(`We will send the details of the dish: 
-  ${req.params.dishesId} to you!`)
-});
-app.post('/dishes/:dishesId',(req,res,next)=>{
-  res.end(`POST operations are not supportted in dishes/ ${req.params.dishesId}`)
-});
-app.put('/dishes/:dishesId', (req,res,next)=>{
-  /*for the status 403 this means that is not supported or forbidden
-  res.write(`Updating the dish:${req.params.dishesId}\n`)
-  res.end(`Will update the dish: ${req.body.name} with details ${req.body.description} `)
-});
 
-app.delete('/dishes/:dishesId', (req,res,next)=>{
-  /*for the status 403 this means that is not supported 
-    res.end(`Deleting dishe! ${req.params.dishesId}`)
-});
 */
 
 

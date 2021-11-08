@@ -12,7 +12,7 @@ dishRouter.route('/')
     next();
 })
 .get((req,res,next) => {
-    res.end('Will send all the dishes to you!');
+    res.end('Will send all the dishes to you now!');
 })
 .post((req, res, next) => {
     res.end('Will add the dish: ' + req.body.name + ' with details: ' + req.body.description);

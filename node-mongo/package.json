@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
-
+    "start": "nodemon index"
   },
   "author": "Fabian Romero",
   "license": "ISC",
   "dependencies": {
     "assert": "^2.0.0",
-    "mongodb": "^4.1.4"
+    "mongodb": "^4.1.4",
+    "nodemon": "^2.0.14"
   }
 }
